@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+  <body>
+    <div class="header-container"
+         xmlns:th="http://thymeleaf.org"
+         xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+      <div class="site-name">Beauty Salon</div>
+
+      <div class="header-bar">
+        <th:block sec:authorize="isAuthenticated()">
+          Hello
+          <a th:href="@{/home}" th:utext="${#request.userPrincipal.name}">..</a>
+          &nbsp;|&nbsp;
+          <a th:href="@{/logout}">Logout</a>
+        </th:block>
+
+        <th:block sec:authorize="!isAuthenticated()">
+          <a th:href="@{/login}">Login</a>
+          &nbsp;|&nbsp;
+          <a th:href="@{/registration}">Registration</a>
+        </th:block>
+      </div>
+
+    </div>
+  </body>
+</html>

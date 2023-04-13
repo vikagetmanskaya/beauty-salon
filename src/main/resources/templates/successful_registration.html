@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Success</title>
+  <link rel="stylesheet" href="/styles.css" type="text/css">
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/menu"></th:block>
+<div class="page-title">Registration Success</div>
+<div class="back-container">
+<center>
+  <span th:text="'A verification email has been sent to: ' + ${email}"></span>
+</center>
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Master</title>
+  <link rel="stylesheet" href="/styles.css" type="text/css">
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="menu"></th:block>
+<div class="create-container">
+<form th:method="PATCH" th:action="@{/masters/{id}(id=${master.getId()})}" th:object="${master}">
+  <fieldset>
+    <div class="text-field text-field_floating">
+      <input type="text" th:field="*{name}"  class="text-field__input"
+             placeholder="Master name" required="true" autofocus="true"/>
+    </div>
+    <div class="text-field text-field_floating">
+      <input type="text" th:field="*{experience}" class="text-field__input"
+             placeholder="Experience" required="true"/>
+    </div>
+    <div class="text-field text-field_floating">
+      <input type="text" th:field="*{item.name}" class="text-field__input"
+             placeholder="Service name" required="true"/>
+    </div>
+    <input type="submit" class="submit_input" value="Update Master"/>
+  </fieldset>
+</form>
+</div>
+</body>
+</html>

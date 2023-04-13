@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Service</title>
+    <link rel="stylesheet" href="/styles.css" type="text/css">
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/menu"></th:block>
+<div class="page-title">Service <span th:text="${service.getName()}"></span> </div>
+<br/>
+<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
+    <form th:method="DELETE" th:action="@{/services/{id}(id=${service.getId()})}">
+        <input type="submit" class="form_button" value="Delete this service"/>
+    </form>
+</th:block>
+<div class="d10">
+<h3>Masters</h3>
+</div>
+<div class="rectangle">
+<div th:each="master : ${service.getMasters}">
+    <a th:href="@{/masters/{id}(id=${master.getId()})}"
+       th:text="${master.getName() + ', ' + master.getItem().getName()}">master</a>
+</div>
+</div>
+</body>
+</html>

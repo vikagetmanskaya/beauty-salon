@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Records</title>
+  <link href="styles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/menu"></th:block>
+<div class="page-title">Records</div>
+</br>
+</br>
+<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
+<!--  <a th:href="@{/records/new}">Add record</a>-->
+  <form th:action="@{/records/new}" method="get">
+    <button type="submit" class="form_button">Add Record</button>
+  </form>
+</th:block>
+<form th:action="@{/records}" method="get">
+  <div class="text-field">
+    <div class="text-field__group">
+  <input type="text" class="text-field__input_records" name="master" th:value="${master}"  placeholder="Find records by master" size="30">
+  <input type="text" class="text-field__input_records" name="service" th:value="${service}"  placeholder="Find records by service" size="30">
+  <input type="date" class="text-field__input_records" name="recordingDate" th:value="${recordingDate}"
+         placeholder="Find records by date and time" size="30">
+  <input type="submit" class="text-field__btn" value="Search">
+    </div>
+  </div>
+</form>
+<!--<div th:if="${#lists.isEmpty(recordList)">-->
+<!--  <span th:text="${info}"></span>-->
+<!--</div>-->
+<!--<div th:unless="${#lists.isEmpty(recordList)">-->
+<div th:each="record : ${recordList}">
+  <div class="back-container">
+    <fieldset>
+  <div th:text="${'Service: ' + record.getMaster().getItem().getName()}"></div>
+  <div th:text="${'Master: ' + record.getMaster().getName()}"></div>
+  <div th:text="${'Date: ' + record.getRecordingDate()}"></div>
+  <div th:text="${'Price: ' + record.getPrice() + '$'}"></div>
+  <th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
+    <form th:action="@{/records/delete/{id}(id=${record.getId()})}" th:method="DELETE">
+      <button type="submit" class="form_button">Delete</button>
+    </form>
+  </th:block>
+  <div th:if="${record.isFree()} == true">
+    <th:block sec:authorize="hasAuthority('ROLE_USER')">
+      <form th:action="@{/records/{id}(id=${record.getId()})}" method="post">
+        <button type="submit" class="form_button">Add to cart</button>
+      </form>
+    </th:block>
+  </div>
+  <div th:if="${record.isFree()} == false">
+    <div>Запись занята</div>
+  </div>
+    </fieldset>
+</div>
+</div>
+<!--</div>-->
+</body>
+</html>

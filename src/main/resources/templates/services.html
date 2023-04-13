@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Services</title>
+    <link href="/styles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/menu"></th:block>
+<div class="page-title">Services</div>
+<br/>
+<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
+    <form th:action="@{/services/new}" th:method="get">
+        <button type="submit" class="form_button">Add Service</button>
+    </form>
+</th:block>
+<div class="rectangle">
+<div th:each="service : ${services}">
+    <a th:href="@{/services/{id}(id=${service.getId()})}" th:text="${service.getName()}">service</a>
+</div>
+</div>
+</body>
+</html>

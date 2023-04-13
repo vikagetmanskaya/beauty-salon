@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <link href="/styles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/menu"></th:block>
+<div class="page-title">Cart</div>
+<br/>
+<form th:method="DELETE" th:action="@{/cart}">
+    <input type="submit" class="form_button" value="Delete All"/>
+</form>
+<br/>
+<div th:each="record : ${recordsInCart}">
+    <div class="back-container">
+        <fieldset>
+    <div th:text="${'Service: ' + record.getMaster().getItem().getName()}"></div>
+    <div th:text="${'Master: ' + record.getMaster().getName()}"></div>
+    <div th:text="${'Date: ' + record.getRecordingDate()}"></div>
+        <form th:method="DELETE" th:action="@{/cart/{id}(id=${record.getId()})}">
+            <input type="submit" class="form_button" value="Delete"/>
+        </form>
+        </fieldset>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Master</title>
+    <link rel="stylesheet" href="/styles.css" type="text/css">
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/menu"></th:block>
+<div class="page-title">Master <span th:text="${master.getName()}"></span> </div>
+<br/>
+<br/>
+<div class="back-container">
+    <fieldset>
+        <th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
+            <form th:method="DELETE" th:action="@{/masters/{id}(id=${master.getId()})}">
+                <input type="submit" class="form_button" value="Delete"/>
+            </form>
+        </th:block>
+<div th:text="${'Experience: ' + master.getExperience() + ' years'}"></div>
+<div th:text="${'Service: ' + master.getItem().getName()}"></div>
+        Photos: <div th:each="photo : ${master.getPhotos}">
+        <img class="pic" th:src="${'/files/' + photo.getFileName()}">
+        <br/>
+        <th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
+            <form th:action="@{/files/delete/{id}(id=${photo.getId()})}" th:method="DELETE">
+                <button type="submit" class="btn">Delete</button>
+            </form>
+            <br/>
+        </th:block>
+    </div>
+    </fieldset>
+</div>
+</body>
+</html>

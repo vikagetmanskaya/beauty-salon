@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <link rel="stylesheet" href="/styles.css" type="text/css">
+</head>
+<body>
+    <th:block th:include="/_header"></th:block>
+    <th:block th:include="menu"></th:block>
+    <div class="page-title">Registration</div>
+    <div class="registration-container">
+        <form method="POST" th:action="@{/registration}" th:object="${user}">
+            <fieldset>
+                <div class="text-field text-field_floating">
+                <input type="text" class="text-field__input" th:field="*{username}"
+                       placeholder="Username" required="true" autofocus="true"/>
+                    <span style="color: white; background-color: red" th:if="${#fields.hasErrors('username')}" th:erros="*{username}">Username is not valid</span>
+                    </div>
+                <div class="text-field text-field_floating">
+                <input type="text" class="text-field__input" th:field="*{email}"
+                       placeholder="Email" required="true"/>
+                    <span style="color: white; background-color: red" th:if="${#fields.hasErrors('email')}" th:erros="*{email}">Email is not valid</span>
+                </div>
+                <div class="text-field text-field_floating">
+                <input type="password" class="text-field__input" th:field="*{password}"
+                       placeholder="Password" required="true"/>
+                    <span style="color: white; background-color: red" th:if="${#fields.hasErrors('password')}" th:erros="*{password}">Password must be at least 8 characters long</span>
+                </div>
+                <div class="text-field text-field_floating">
+                <input type="text" class="text-field__input" th:field="*{firstName}"
+                       placeholder="First Name" required="true"/>
+                    <span style="color: white; background-color: red" th:if="${#fields.hasErrors('firstName')}" th:erros="*{firstName}">First Name is not valid</span>
+                </div>
+                <div class="text-field text-field_floating">
+                <input type="text" class="text-field__input" th:field="*{lastName}"
+                       placeholder="Last name" required="true"/>
+                    <span style="color: white; background-color: red" th:if="${#fields.hasErrors('lastName')}" th:erros="*{lastName}">Last Name is not valid</span>
+                </div>
+                <div class="text-field text-field_floating">
+                <input type="text" class="text-field__input" th:field="*{phoneNumber}"
+                       placeholder="Phone number" required="true"/>
+                    <span style="color: white; background-color: red" th:if="${#fields.hasErrors('phoneNumber')}" th:erros="*{phoneNumber}">"Phone number is not valid, please, use pattern: +375XXXXXXXXX"</span>
+                </div>
+                <input type="submit" class="submit_input" value="Register"/>
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>

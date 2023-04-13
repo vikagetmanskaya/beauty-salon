@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Masters</title>
+  <link href="/styles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/menu"></th:block>
+<div class="page-title">Masters</div>
+</br>
+
+<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
+    <form th:action="@{/masters/new}" th:method="get">
+      <button type="submit" class="form_button">Add Master</button>
+    </form>
+</th:block>
+
+<form th:action="@{/masters}" method="get">
+  <div class="text-field">
+    <div class="text-field__group">
+      <input class="text-field__input" type="search" name="service" th:value="${service}" placeholder="Find masters by service">
+
+
+  <button class = "text-field__btn" type="submit" >Search</button>
+    </div>
+  </div>
+<!--  <button type="reset" class="btn btn-info" >Reset</button>-->
+</form>
+<div class="rectangle">
+<div th:each="master : ${masterList}">
+  <a th:href="@{/masters/{id}(id=${master.getId()})}"
+     th:text="${master.getName()  + ', ' + master.getItem().getName()}">master</a>
+  <th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
+    <form th:action="@{/masters/update/{id}(id=${master.getId()})}" th:method="get">
+      <button type="submit" class="form_button">Update</button>
+    </form>
+  </th:block>
+  <th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
+    <br/>
+    <form th:action="@{/files/{id}/new(id=${master.getId()})}" th:method="get">
+      <button type="submit" class="form_button">Add Photo</button>
+    </form>
+  </th:block>
+</div>
+</div>
+</body>
+</html>
