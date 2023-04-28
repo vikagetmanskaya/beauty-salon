@@ -14,8 +14,7 @@ public class Cart {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @OneToMany
-    @JoinColumn(name = "cart_records_id")
+    @OneToMany(mappedBy = "cart")
     private List<Record> records;
 
     public Cart() {

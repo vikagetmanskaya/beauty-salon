@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Comments</title>
+    <link href="styles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/menu"></th:block>
+<div class="page-title">Comments</div>
+</br>
+</br>
+<th:block sec:authorize="hasAuthority('ROLE_USER')">
+<!--    <form th:action="@{/comments/new}" method="get">-->
+<!--        <button type="submit" class="form_button">Add Comment</button>-->
+<!--    </form>-->
+    <form method="POST" th:action="@{/comments}" th:object="${comment}">
+        <fieldset>
+            <label>
+                <textarea name="comment" placeholder="Your comment here"></textarea>
+            </label>
+            <br/>
+            <input type="submit" class="submit_input" value="Add Comment"/>
+        </fieldset>
+    </form>
+    </br>
+</th:block>
+<div th:each="comment : ${comments}">
+    <div class="back-container">
+        <fieldset>
+            <div th:text="${'User: ' + comment.getUser().getUsername()}"></div>
+            <div th:text="${comment.getComment()}"></div>
+            <th:block sec:authorize="isAuthenticated()">
+            <div th:if="${#strings.equals(#request.userPrincipal.name, comment.getUser().getUsername())}">
+                <form th:action="@{/comments/delete/{id}(id=${comment.getId()})}" th:method="DELETE">
+                    <button type="submit" class="form_button">Delete</button>
+                </form>
+            </div>
+            </th:block>
+        </fieldset>
+    </div>
+</div>
+<!--</div>-->
+</body>
+</html>

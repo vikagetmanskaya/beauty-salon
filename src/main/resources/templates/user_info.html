@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>User</title>
+  <link rel="stylesheet" href="/styles.css" type="text/css">
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/menu"></th:block>
+<div class="page-title">User <span th:text="${user.getUsername()}"></span> </div>
+<br/>
+<br/>
+<div class="account-container">
+  <ul class="list5b">
+    <li>User Name: <span th:utext="${user.username}"></span></li>
+    <li>Email: <span th:utext="${user.email}"></span></li>
+    <li>Name: <span th:utext="${user.firstName}"></span></li>
+    <li>Surname: <span th:utext="${user.lastName}"></span></li>
+    <li>Phone Number: <span th:utext="${user.phoneNumber}"></span></li>
+  </ul>
+</div>
+</body>
+</html>

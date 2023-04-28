@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Users</title>
+  <link href="/styles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/menu"></th:block>
+<div class="page-title">Users</div>
+</br>
+
+<form th:action="@{/users}" method="get">
+  <div class="text-field">
+    <div class="text-field__group">
+      <input class="text-field__input" type="search" name="username" th:value="${username}" placeholder="Find user by username">
+
+
+      <button class = "text-field__btn" type="submit" >Search</button>
+    </div>
+  </div>
+  <!--  <button type="reset" class="btn btn-info" >Reset</button>-->
+</form>
+<div class="rectangle">
+  <div th:each="user : ${userList}">
+    <a th:href="@{/users/{id}(id=${user.getId()})}"
+       th:text="${user.getUsername()  + ', ' + user.getRole().getName()}">user</a>
+    <th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
+      <br/>
+      <form th:action="@{/users/{id}(id=${user.getId()})}" th:method="PATCH">
+        <button type="submit" class="form_button">Make Admin</button>
+      </form>
+    </th:block>
+  </div>
+</div>
+</body>
+</html>

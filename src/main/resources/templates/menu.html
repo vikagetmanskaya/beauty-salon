@@ -20,13 +20,15 @@
     <a th:href="@{/masters}">Masters</a>
     |
     <a th:href="@{/records}">Records</a>
+    |
+    <a th:href="@{/comments}">Comments</a>
     <th:block sec:authorize="hasAuthority('ROLE_USER')">
         |
         <a th:href="@{/cart}">Cart</a>
     </th:block>
     <th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
         |
-        <a th:href="@{/registration/admin}">Add admin</a>
+        <a th:href="@{/users}">All users</a>
     </th:block>
 
 </div>

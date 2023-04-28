@@ -5,6 +5,7 @@ import com.example.diploma.util.ValidConstant;
 import javax.validation.constraints.*;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users")

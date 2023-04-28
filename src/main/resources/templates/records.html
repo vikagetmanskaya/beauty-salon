@@ -53,6 +53,10 @@
   </div>
   <div th:if="${record.isFree()} == false">
     <div>Запись занята</div>
+    <th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
+      <a th:href="@{/users/{id}(id=${record.getCart().getUser().getId()})}"
+         th:text="${record.getCart().getUser().getUsername()}">user</a>
+    </th:block>
   </div>
     </fieldset>
 </div>

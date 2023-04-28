@@ -50,7 +50,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE,"/files/delete/{id}").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST,"/registration/admin").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET,"/registration/admin").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/users/{id}").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/users").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PATCH,"/users/{id}").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST,"/records/{id}").hasRole("USER")
+                .antMatchers(HttpMethod.POST,"/comments").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE,"/comments/delete/{id}").hasRole("USER")
                 .antMatchers("/cart/**").hasRole("USER")
                 .and().formLogin().failureHandler(getAuthenticationFailureHandler()).loginPage("/login").defaultSuccessUrl("/home").
                 usernameParameter("userName").passwordParameter("password").permitAll()

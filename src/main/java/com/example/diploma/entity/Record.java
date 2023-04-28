@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "records")
@@ -20,6 +21,9 @@ public class Record {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Column(name = "recording_date")
     private LocalDateTime recordingDate;
+    @ManyToOne
+    @JoinColumn(name = "cart_records_id")
+    private Cart cart;
     @Column(name = "free")
     private boolean free;
     @Column(name = "price")
@@ -73,4 +77,13 @@ public class Record {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
 }
+

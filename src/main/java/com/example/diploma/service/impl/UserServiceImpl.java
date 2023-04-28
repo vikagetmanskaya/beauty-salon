@@ -13,6 +13,9 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -25,6 +28,19 @@ public class UserServiceImpl implements UserService {
     ConfirmationTokenRepository confirmationTokenRepository;
     @Autowired
     EmailServiceImpl emailService;
+
+    @Override
+    public List<User> getAll(String username) {
+        List<User> users = userRepository.findAll();
+        if (username == null) {
+            return users;
+        } else if (username != null) {
+            users = users.stream()
+                    .filter(user -> user.getUsername().equals(username))
+                    .collect(Collectors.toList());
+        }
+        return users;
+    }
 
     @Override
     public User getById(int id) {
@@ -66,19 +82,6 @@ public class UserServiceImpl implements UserService {
 
         emailService.sendEmail(mailMessage);
 
-        return true;
-    }
-
-    @Override
-    public boolean addAdmin(User user) {
-        if (getByUsername(user.getUsername()) != null | user.getUsername().contains(" ")) {
-            return false;
-        }
-        user.setPassword(PasswordEncoderFactories.createDelegatingPasswordEncoder()
-                .encode(user.getPassword()));
-        user.setEnabled(true);
-        user.setRole(roleRepository.getByName("ROLE_ADMIN"));
-        userRepository.save(user);
         return true;
     }
 

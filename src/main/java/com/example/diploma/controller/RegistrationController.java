@@ -46,21 +46,4 @@ public class RegistrationController {
         }
     }
 
-    @GetMapping("/admin")
-    public String registrationAdmin(Model model) {
-        User user = new User();
-        model.addAttribute("admin", user);
-        return "registration_admin";
-    }
-
-    @PostMapping("/admin")
-    public String createNewAdmin(@Valid @ModelAttribute("admin") User user, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "registration_admin";
-        } else {
-            userService.addAdmin(user);
-            return "redirect:/home";
-        }
-    }
-
 }
