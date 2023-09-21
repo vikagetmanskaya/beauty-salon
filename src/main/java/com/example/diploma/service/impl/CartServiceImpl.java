@@ -19,11 +19,11 @@ import java.util.stream.Collectors;
 @Service
 public class CartServiceImpl implements CartService {
     @Autowired
-    CartRepository cartRepository;
+    private CartRepository cartRepository;
     @Autowired
-    UserService userService;
+    private UserService userService;
     @Autowired
-    RecordService recordService;
+    private RecordService recordService;
 
     @Override
     public List<Cart> getAll() {
