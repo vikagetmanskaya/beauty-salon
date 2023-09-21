@@ -18,9 +18,9 @@ import java.util.List;
 @RequestMapping("/records")
 public class RecordController {
     @Autowired
-    RecordService recordService;
+    private RecordService recordService;
     @Autowired
-    CartService cartService;
+    private CartService cartService;
 
     @GetMapping()
     public String recordList(@RequestParam(name = "master", required = false) String master,
