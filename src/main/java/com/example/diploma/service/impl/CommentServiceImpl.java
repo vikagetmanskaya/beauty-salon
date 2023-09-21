@@ -15,9 +15,9 @@ import java.util.List;
 
 public class CommentServiceImpl implements CommentService {
     @Autowired
-    CommentRepository commentRepository;
+    private CommentRepository commentRepository;
     @Autowired
-    UserService userService;
+    private UserService userService;
     @Override
     public List<Comment> getAll() {
         return commentRepository.findAll();
