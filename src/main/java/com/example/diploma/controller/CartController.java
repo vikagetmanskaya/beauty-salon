@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/cart")
 public class CartController {
     @Autowired
-    CartService cartService;
+    private CartService cartService;
 
     @GetMapping()
     public String getCartRecords(Model model, Principal principal) {
