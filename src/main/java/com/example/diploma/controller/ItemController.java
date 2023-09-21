@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/services")
 public class ItemController {
     @Autowired
-    ItemService itemService;
+    private ItemService itemService;
 
     @GetMapping()
     public String serviceList(Model model) {
