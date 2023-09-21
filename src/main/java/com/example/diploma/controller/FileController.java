@@ -17,9 +17,9 @@ import java.io.*;
 @RequestMapping("/files")
 public class FileController {
     @Autowired
-    FileService fileService;
+    private FileService fileService;
     @Autowired
-    MasterService masterService;
+    private MasterService masterService;
 
     @GetMapping("{id}/new")
     public String imageForm(@PathVariable("id") int id, Model model) {
