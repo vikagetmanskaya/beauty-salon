@@ -25,9 +25,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     CartRepository cartRepository;
     @Autowired
-    ConfirmationTokenRepository confirmationTokenRepository;
+    private ConfirmationTokenRepository confirmationTokenRepository;
     @Autowired
-    EmailServiceImpl emailService;
+    private EmailServiceImpl emailService;
 
     @Override
     public List<User> getAll(String username) {
