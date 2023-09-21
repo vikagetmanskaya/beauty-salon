@@ -21,17 +21,17 @@ import java.util.stream.Collectors;
 @Service
 public class MasterServiceImpl implements MasterService {
     @Autowired
-    MasterRepository masterRepository;
+    private MasterRepository masterRepository;
     @Autowired
-    PhotoRepository photoRepository;
+    private PhotoRepository photoRepository;
     @Autowired
-    CartRepository cartRepository;
+    private CartRepository cartRepository;
     @Autowired
-    RecordRepository recordRepository;
+    private RecordRepository recordRepository;
     @Autowired
-    CartService cartService;
+    private CartService cartService;
     @Autowired
-    ItemService itemService;
+    private ItemService itemService;
 
     @Override
     public List<Master> getAll(String service) {
