@@ -16,9 +16,9 @@ import java.util.List;
 @RequestMapping("/masters")
 public class MasterController {
     @Autowired
-    MasterService masterService;
+    private MasterService masterService;
     @Autowired
-    MasterRepository masterRepository;
+    private MasterRepository masterRepository;
 
     @GetMapping()
     public String showAllMasterByService(String service,
