@@ -18,13 +18,13 @@ import java.util.stream.Collectors;
 @Service
 public class RecordServiceImpl implements RecordService {
     @Autowired
-    RecordRepository recordRepository;
+    private RecordRepository recordRepository;
     @Autowired
-    MasterService masterService;
+    private MasterService masterService;
     @Autowired
-    CartRepository cartRepository;
+    private CartRepository cartRepository;
     @Autowired
-    EmailServiceImpl emailService;
+    private EmailServiceImpl emailService;
 
     @Override
     public List<Record> getAll(String master, String date, String service) {
