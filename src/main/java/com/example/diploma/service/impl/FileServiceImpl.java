@@ -22,13 +22,13 @@ import java.util.List;
 public class FileServiceImpl implements FileService {
     private final int FILE_NAME_LENGTH = 11;
     @Autowired
-    PhotoRepository photoRepository;
+    private PhotoRepository photoRepository;
     @Autowired
-    MasterService masterService;
+    private MasterService masterService;
     @Autowired
-    MasterRepository masterRepository;
+    private MasterRepository masterRepository;
     @Autowired
-    RandomStringGenerator randomStringGenerator;
+    private RandomStringGenerator randomStringGenerator;
 
     public void saveFile(MultipartFile file, int id) {
         try {
