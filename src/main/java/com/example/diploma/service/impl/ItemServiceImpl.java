@@ -12,15 +12,15 @@ import java.util.List;
 @Service
 public class ItemServiceImpl implements ItemService {
     @Autowired
-    ItemRepository itemRepository;
+    private ItemRepository itemRepository;
     @Autowired
-    MasterRepository masterRepository;
+    private MasterRepository masterRepository;
     @Autowired
-    PhotoRepository photoRepository;
+    private PhotoRepository photoRepository;
     @Autowired
-    RecordRepository recordRepository;
+    private RecordRepository recordRepository;
     @Autowired
-    CartRepository cartRepository;
+    private CartRepository cartRepository;
 
     @Override
     public List<Item> getAll() {
